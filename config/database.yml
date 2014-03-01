@@ -1,0 +1,8 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: stockpicker_dev
+  pool: 5
+  username: rails
+  password: jordan

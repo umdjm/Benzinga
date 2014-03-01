@@ -1,0 +1,36 @@
+<%- model_class = StockResult -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:stock) %></th>
+      <th>Day</th>
+      <th><%= model_class.human_attribute_name(:direction) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_results.each do |stock_result| %>
+      <tr>
+        <td><%= stock_result.stock %></td>
+        <td><%= stock_result.result_date %></td>
+        <td><%= stock_result.direction %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_stock_result_path(stock_result), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      stock_result_path(stock_result),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_stock_result_path,
+            :class => 'btn btn-primary' %>

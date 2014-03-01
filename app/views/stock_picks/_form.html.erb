@@ -1,0 +1,20 @@
+<%= form_for @stock_pick, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <div class="control-group">
+    <%= f.label "Stock", :class => 'control-label' %>
+    <%= f.collection_select( :stock_result_id, StockResult.where(:direction => "").order(:stock), :id, :stock, include_blank: true ) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :prediction, :class => 'control-label' %>
+
+    <div class="field">
+      <%= f.select :prediction, options_for_select(StockPick::DIRECTIONS) %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                stock_picks_path, :class => 'btn' %>
+  </div>
+<% end %>

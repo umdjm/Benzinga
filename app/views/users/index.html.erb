@@ -1,0 +1,83 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-md-6">
+      <h2>Picks</h2>
+
+      <div class="btn-toolbar">
+        <div class="btn-group day-btn-group">
+          <a class="btn-default btn" href=""><%= Time.now.yesterday.strftime("%A %b %-d") %></a>
+          <a class="btn btn-info" ><%= Time.now.strftime("%A %b %-d") %></a>
+          <a class="btn btn-default" href=""><%= Time.now.tomorrow.strftime("%A %b %-d") %></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-6">
+
+      <h2>Leaderboard</h2>
+
+      <div class="btn-toolbar">
+        <div class="btn-group streak-btn-group">
+          <a class="btn-current btn-info btn-default btn" href="javascript:displayOrder('current')">Current</a>
+          <a class="btn-longest btn btn-default" href="javascript:displayOrder('longest');">Longest</a>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="current-streak streak table table-striped">
+        <thead>
+          <tr>
+            <th>User current</th>
+            <th>Longest</th>
+            <th>Current</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @current_leaders.each do |user| %>
+            <tr>
+              <td><%= user.email %></td>
+              <td><%= user.max_streak %></td>
+              <td><%= user.current_streak %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </div>
+
+      <div class="table-responsive">
+        <table style="display:none" class="longest-streak streak table table-striped">
+          <thead>
+          <tr>
+            <th>User</th>
+            <th>Longest</th>
+            <th>Current</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @all_time_leaders.each do |user| %>
+            <tr>
+              <td><%= user.email %></td>
+              <td><%= user.max_streak %></td>
+              <td><%= user.current_streak %></td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+    <script>
+      function displayOrder(selector)
+      {
+        var streakBtns = $(".streak-btn-group");
+        $(".streak").hide();
+        streakBtns.children(".btn").removeClass("btn-info");
+        streakBtns.children("." +  selector + "-streak").show();
+        streakBtns.children(".btn-" + selector).addClass("btn-info");
+
+        $("." + selector + "-streak").show();
+      }
+    </script>

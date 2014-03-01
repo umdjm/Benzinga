@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Streak | Benzinga</title>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <link type="text/css" rel="stylesheet" media="all" href="http://cdn3.benzinga.com/files/advagg_css/css_0c6c01a3415b48ded2ad578e90b7d3cc_2.css">
+  <link rel="stylesheet" href="http://cdn1.benzinga.com/files/advagg_css/css_ab141cbb53ce4f0665c84d000e4eb2c2_13.css"></link>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,800italic,400,700" rel="stylesheet" type="text/css">
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="front not-logged-in page-bz2-home no-sidebars">
+  <div class="benzinga-onecol-content">
+    <div class="panel-pane pane-panels-mini pane-bz2-header">
+      <div class="pane-content">
+        <div id="bz3-header">
+          <div id="bz3-header-top-wrapper">
+            <div id="bz3-header-top">
+              <div id="bz3-header-top-links">
+                <ul>
+                  <li class="active marketfy"><a href="/" class="active">Stock
+                    Streak</a></li>
+
+                  <li class="benzinga"><a href="http://benzinga.com">Benzinga</a></li>
+
+                  <li class="benzingapro"><a href="http://pro.benzinga.com" target=
+                          "_blank">Benzinga Pro</a></li>
+
+                  <li class="marketfy"><a href="http://marketfy.com" target=
+                          "_blank">Marketfy</a></li>
+                </ul>
+              </div>
+
+              <div id="bz3-header-top-content">
+                <div class="panel-pane pane-block pane-bzcustom-bzcustom-social-links">
+                  <div class="pane-content">
+                    <div class="bz-social-links">
+                      <a href=
+                                 "http://www.facebook.com/pages/Benzingacom/159483118580?v=app_7146470109">
+                        <span id="facebook">Facebook</span></a> <a href=
+                                                                           "http://twitter.com/benzinga"><span id="twitter">Twitter</span></a>
+                      <a href="http://www.linkedin.com/company/benzinga"><span id=
+                                                                                       "linkedin">LinkedIn</span></a> <a href=
+                                                                                                                                 "https://plus.google.com/108838891574408087738/posts"><span id=
+                                                                                                                                                                                                     "google">Google+</span></a> <a href=
+                                                                                                                                                                                                                                            "http://feeds.benzinga.com/benzinga"><span id="rss">RSS</span></a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="panel-region-separator"></div>
+
+                <div class="panel-pane pane-block pane-bz-user-bz-user-login-header">
+                  <div class="pane-content">
+                    <div id="login-header-items">
+                      <ul>
+                        <li><a href="/login" id="user-login" name=
+                                "user-login">Login</a></li>
+
+                        <li><a href="/signup" id="user-register" name="user-register">Sign
+                          up</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="bz3-header-logos-wrapper">
+          <div id="bz3-header-logos">
+            <div id="bz-logo">
+              <a href="/">Benzinga - Feed Your Mind.</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-region-separator"></div>
+    <div class="panel-pane pane-page-content">
+    <%= yield %>
+    </div>
+    <div class="panel-pane pane-panels-mini pane-bz2-footer">
+      <div class="pane-content">
+        <div id="benzinga-footer">
+          <div id="benzinga-footer-inner">
+            <div class="benzinga-footer-tag">
+              <div class="benzinga-block">
+                <div class="benzinga-footer-logo">
+                </div>
+                <div class="benzinga-footer-text">
+                  Benzinga is a fast-growing, dynamic and innovative financial media outlet that empowers investors with high-quality, unique content.
+                </div>
+              </div>
+            </div>
+            <div class="site-footer-links">
+              <div class="benzinga-block">
+                <div class="block-column block-column-catecories"><span class="left">1 (877) 440-9464 (ZING)</span>
+                  <span class="right">Benzinga.com © 2013</span></div>      </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

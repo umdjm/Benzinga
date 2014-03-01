@@ -1,0 +1,28 @@
+<%- model_class = StockPick -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Stock Pick</th>
+      <th>Day</th>
+      <th>Prediction</th>
+      <th>Success</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_picks.each do |stock_pick| %>
+      <tr>
+        <td><%= stock_pick.stock_result.stock  %></td>
+        <td><%= stock_pick.stock_result.result_date %></td>
+        <td><%= stock_pick.prediction %></td>
+        <td><%= stock_pick.success  %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_stock_pick_path,
+            :class => 'btn btn-primary' %>

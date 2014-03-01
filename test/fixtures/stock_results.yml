@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  stock: MyString
+  result_date: 2014-02-11
+  direction: 1
+
+two:
+  stock: MyString
+  result_date: 2014-02-11
+  direction: 1
