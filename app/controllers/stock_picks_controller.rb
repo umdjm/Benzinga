@@ -1,4 +1,6 @@
 class StockPicksController < ApplicationController
+  before_filter :authorize
+
   # GET /stock_picks
   # GET /stock_picks.json
   def index

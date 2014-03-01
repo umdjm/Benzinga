@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_filter :authorize, only: [:edit, :update]
   protect_from_forgery
   private
 
