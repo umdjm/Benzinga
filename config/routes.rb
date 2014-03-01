@@ -1,6 +1,8 @@
 StockPicker::Application.routes.draw do
 
-  root to: 'stock_results#show'
+  resources :users
+  resources :sessions
+  root to: 'users#new'
 
   get '/results/:day', to: 'stock_results#show'
 
