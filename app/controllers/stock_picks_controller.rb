@@ -45,7 +45,7 @@ class StockPicksController < ApplicationController
     @stock_result = StockResult.find(params[:stock_result_id])
     @stock_pick = current_user.stock_picks.build
 
-    @stock_pick.assigned_price = @stock_result.current_price
+    @stock_pick.assigned_price = @stock_result.price
     @stock_pick.stock_result_id = @stock_result.id
     @stock_pick.prediction = params[:prediction]
 
