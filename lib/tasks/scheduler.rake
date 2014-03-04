@@ -11,3 +11,11 @@ task :update_streaks => :environment do
   User.update_all_streaks
   puts "done."
 end
+
+
+desc "This task is called by the Heroku scheduler add-on"
+task :create_next_day => :environment do
+  puts "Createing Next Day..."
+  StockResult.create_next_day
+  puts "done."
+end
