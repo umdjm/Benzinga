@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     max_streak = 0
     self.stock_picks.order(:id).each do |pick|
       if pick.success
-        curr_streak++
+        curr_streak = curr_streak + 1
         max_streak = curr_streak if curr_streak > max_streak
       elsif !pick.success.nil?
         curr_streak = 0
@@ -23,9 +23,8 @@ class User < ActiveRecord::Base
   end
 
   def self.update_all_streaks
-    StockPick.update_all_statuses
-    sql = "UPDATE Users AS u
-          SET current_streak = COUNT(s.ID)"
-    ActiveRecord::Base.connection.execute(sql)
+    User.all.each do |u|
+      u.update_streaks
+    end
   end
 end
