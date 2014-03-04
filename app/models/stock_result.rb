@@ -1,6 +1,6 @@
 class StockResult < ActiveRecord::Base
   attr_accessible :result_date, :stock, :closing_price, :current_price
-
+  before_create :update_price
   has_many :stock_picks
 
   def market_open
@@ -12,7 +12,6 @@ class StockResult < ActiveRecord::Base
     return market_open ? self.current_price : self.closing_price
   end
 
-
   def self.update_prices
     StockResult.where(:closing_price => nil).each do |result|
       quote = StockQuote::Stock.quote(result.stock)
@@ -21,6 +20,14 @@ class StockResult < ActiveRecord::Base
         result.closing_price = quote.previous_close if Date.strptime(quote.last_trade_date, "%m/%d/%Y") >= result.result_date
         result.save
       end
+    end
+  end
+
+  def update_price
+    quote = StockQuote::Stock.quote(self.stock)
+    if quote.response_code == 200
+      self.current_price = quote.ask
+      self.closing_price = quote.previous_close if Date.strptime(quote.last_trade_date, "%m/%d/%Y") >= result.result_date
     end
   end
 
