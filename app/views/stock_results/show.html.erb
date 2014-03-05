@@ -9,7 +9,7 @@
 
       <div class="btn-toolbar">
           &nbsp;
-          <% if @curr_day <= User.first.created_at.at_midnight %>
+          <% if @curr_day.at_midnight <= User.first.created_at.at_midnight %>
             First | Previous
           <% else %>
             <a href="<%= url_for :controller => 'stock_results', :action => 'show', :day => prev_weekday(current_user.created_at).strftime("%Y%m%d") %>">First</a>
