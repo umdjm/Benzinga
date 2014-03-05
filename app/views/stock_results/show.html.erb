@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-8">
-      <h2><%= @allow_prediction %> Picks for <%= @curr_day.strftime("%A %b %-d") %> </h2>
+      <h2> Picks for <%= @curr_day.strftime("%A %b %-d") %> </h2>
 
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
