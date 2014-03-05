@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  attr_accessible :email, :password, :password_confirmation, :current_streak, :max_streak
+  attr_accessible :email, :password, :password_confirmation, :current_streak, :max_streak, :name
 
   validates_uniqueness_of :email
   has_many :stock_picks

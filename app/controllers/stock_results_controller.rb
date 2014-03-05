@@ -30,6 +30,7 @@ class StockResultsController < ApplicationController
     @allow_prediction = @market_open
     @results.each do |result|
       @allow_prediction = false unless result.closing_price.nil?
+      @allow_prediction = false unless result.stock_picks.first.nil?
     end
 
     respond_to do |format|
