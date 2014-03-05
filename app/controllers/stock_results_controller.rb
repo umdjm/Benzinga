@@ -14,7 +14,7 @@ class StockResultsController < ApplicationController
   end
 
   def show
-    @max_date = StockResult.maximum(:result_date)
+    @max_date = Time.parse(StockResult.maximum(:result_date).to_s)
 
     if params[:day].nil?
       @curr_day = @max_date
