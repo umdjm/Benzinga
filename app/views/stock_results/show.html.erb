@@ -1,17 +1,31 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-12 col-md-8">
-      <h2>Picks</h2>
+      <h2>Picks for <%= @curr_day.strftime("%A %b %-d") %> </h2>
+
       <% if flash[:notice] %>
         <div class="notice"><%= flash[:notice] %></div>
       <% end %>
 
       <div class="btn-toolbar">
-        <div class="btn-group day-btn-group" style="width:100%">
-          <a class="btn-default btn" style="width:33%" href="<%= url_for :controller => 'stock_results', :action => 'show', :day => prev_weekday(@curr_day).strftime("%Y%m%d") %>"><< <%= prev_weekday(@curr_day).strftime("%A %b %-d") %></a>
-          <a class="btn btn-info" style="width:33%" ><%= @curr_day.strftime("%A %b %-d") %></a>
-          <a class="btn btn-default" style="width:33%" href="<%= url_for :controller => 'stock_results', :action => 'show', :day => next_weekday(@curr_day).strftime("%Y%m%d") %>"><%= next_weekday(@curr_day).strftime("%A %b %-d") %> >></a>
-        </div>
+          &nbsp;
+          <% if @curr_day <= User.first.created_at.at_midnight %>
+            First | Previous
+          <% else %>
+            <a href="<%= url_for :controller => 'stock_results', :action => 'show', :day => prev_weekday(current_user.created_at).strftime("%Y%m%d") %>">First</a>
+            | <a href="<%= url_for :controller => 'stock_results', :action => 'show', :day => prev_weekday(@curr_day).strftime("%Y%m%d") %>">Previous</a>
+          <% end %>
+
+
+          <% if @curr_day >= @max_date %>
+            | Next | Last
+          <% else %>
+            | <a href="<%= url_for :controller => 'stock_results', :action => 'show', :day => next_weekday(@curr_day).strftime("%Y%m%d") %>">Next </a>
+            | <a href="<%= root_url %>"> Last </a>
+          <% end %>
+
+
+
       </div>
       <div class="table-responsive">
         <table class="table table-striped">

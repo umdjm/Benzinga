@@ -21,6 +21,7 @@ class StockResultsController < ApplicationController
     end
 
     @last_call = @curr_day.change(:hour => 15)
+    @max_date = StockResult.maximum(:result_date)
     @market_open = (@last_call > Time.now)
 
     @current_leaders = User.order(:current_streak).limit(20)
