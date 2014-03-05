@@ -111,6 +111,7 @@
           <thead>
           <tr>
             <th>User</th>
+            <th>Record</th>
             <th>Longest</th>
             <th>Current</th>
           </tr>
@@ -119,6 +120,7 @@
           <% @current_leaders.each do |user| %>
             <tr>
               <td><%= user.name %></td>
+              <td><%= user.record %></td>
               <td><%= user.max_streak %></td>
               <td><%= user.current_streak %></td>
             </tr>
@@ -132,6 +134,7 @@
           <thead>
           <tr>
             <th>User</th>
+            <th>Record</th>
             <th>Longest</th>
             <th>Current</th>
           </tr>
@@ -140,6 +143,7 @@
           <% @all_time_leaders.each do |user| %>
             <tr>
               <td><%= user.name %></td>
+              <td><%= user.record %></td>
               <td><%= user.max_streak %></td>
               <td><%= user.current_streak %></td>
             </tr>

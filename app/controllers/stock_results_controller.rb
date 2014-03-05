@@ -25,8 +25,8 @@ class StockResultsController < ApplicationController
     @last_call = @curr_day.change(:hour => 15)
     @market_open = (@last_call > Time.now)
 
-    @current_leaders = User.order(:current_streak).limit(20)
-    @all_time_leaders = User.order(:max_streak).limit(20)
+    @current_leaders = User.order("current_streak desc, max_streak desc").limit(20)
+    @all_time_leaders = User.order("max_streak desc, current_streak desc").limit(20)
     @results = StockResult.includes(:stock_picks).where(:result_date => @curr_day)
 
     @allow_prediction = @market_open

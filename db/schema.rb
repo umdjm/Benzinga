@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140305000436) do
+ActiveRecord::Schema.define(:version => 20140305052144) do
 
   create_table "stock_picks", :force => true do |t|
     t.boolean  "success"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20140305000436) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
     t.string   "name"
+    t.integer  "correct_count"
+    t.integer  "incorrect_count"
   end
 
 end
