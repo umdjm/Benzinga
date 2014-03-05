@@ -1,1 +1,2 @@
 stock_list: ['MSFT', 'AAPL', 'IBM']
+quote_url: 'http://data.benzinga.com/rest/combined?symbols='
