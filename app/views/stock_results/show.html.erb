@@ -46,9 +46,9 @@
           <% @results.each do |result| %>
             <tr>
               <td style="width:10%" ><%= result.stock %></td>
-              <td style="width:25%" > <%= result.price %></td>
+              <td style="width:25%" > <%= number_to_currency(result.price) %></td>
               <% if !result.stock_picks.first.nil? %>
-                <td style="width:25%" ><%= result.stock_picks.first.assigned_price %></td>
+                <td style="width:25%" ><%= number_to_currency(result.stock_picks.first.assigned_price) %></td>
                 <td>
                   <div class="btn-group" style="width:100%">
                     <% ["up", "down"].each do |direction| %>
@@ -80,7 +80,6 @@
                       <%= form_tag({:controller => "stock_picks", :action => "create"}, :id => form_id) do %>
                         <%= hidden_field_tag(:prediction, direction) %>
                         <%= hidden_field_tag(:stock_result_id, result.id) %>
-                        <%= hidden_field_tag(:assigned_price, result.current_price) %>
                         <%= link_to direction.upcase, "#", :style=>"float:left; width:50%; text-align:center", :class => "btn btn-default", :onclick=>"$('#" + form_id + "').submit()" %>
                       <% end %>
                     <% end %>

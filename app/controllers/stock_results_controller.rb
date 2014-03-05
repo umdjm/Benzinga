@@ -19,7 +19,11 @@ class StockResultsController < ApplicationController
     if params[:day].nil?
       @curr_day = @max_date
     else
-      @curr_day = Time.parse(params[:day])
+      begin
+        @curr_day = Time.parse(params[:day])
+      rescue Exception => e
+        @curr_day = @max_date
+      end
     end
 
     @last_call = @curr_day.change(:hour => 15)
