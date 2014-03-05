@@ -14,14 +14,15 @@ class StockResultsController < ApplicationController
   end
 
   def show
+    @max_date = StockResult.maximum(:result_date)
+
     if params[:day].nil?
-      @curr_day = Time.parse(StockResult.maximum(:result_date).to_s)
+      @curr_day = @max_date
     else
       @curr_day = Time.parse(params[:day])
     end
 
     @last_call = @curr_day.change(:hour => 15)
-    @max_date = StockResult.maximum(:result_date)
     @market_open = (@last_call > Time.now)
 
     @current_leaders = User.order(:current_streak).limit(20)
