@@ -3,10 +3,6 @@
     <div class="col-xs-12 col-md-8">
       <h2> Picks for <%= @curr_day.strftime("%A %b %-d") %> </h2>
 
-      <% if flash[:notice] %>
-        <div class="notice"><%= flash[:notice] %></div>
-      <% end %>
-
       <div class="btn-toolbar">
           &nbsp;
           <% if @curr_day.at_midnight <= current_user.created_at.at_midnight %>

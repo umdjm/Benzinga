@@ -13,7 +13,7 @@ class StockPick < ActiveRecord::Base
 
   def result
     return "No Prediction" if self.prediction.nil? || self.assigned_price.nil?
-    return "Market Open" if self.stock_result.closing_price.nil?
+    return "Current Pick" if self.stock_result.closing_price.nil?
     return "Correct" if self.success
     return "Incorrect"
   end

@@ -1,5 +1,5 @@
 class StockPicksController < ApplicationController
-  before_filter :authorize
+  before_filter :authenticate_user!
 
   # GET /stock_picks
   # GET /stock_picks.json

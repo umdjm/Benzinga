@@ -55,12 +55,15 @@
                   <div class="pane-content">
                     <div id="login-header-items">
                       <ul>
-                        <% if current_user.nil? %>
-                          <li><a href="/login" id="user-login" name="user-login">Login</a></li>
-                          <li><a href="/signup" id="user-register" name="user-register">Sign up</a></li>
+                        <% if user_signed_in? %>
+                          <li>Logged in as: <strong><%= current_user.email %></strong></li>
+                          <li><%= link_to 'Edit profile', edit_user_registration_path, :name => "user-register"  %></li>
+                          <li><%= link_to "Logout", destroy_user_session_path, :name => "user-register", method: :delete %></li>
                         <% else %>
-                          <li><a href="/logout" id="user-login" name="user-login">Sign Out</a></li>
+                          <li><%= link_to "Sign up", new_user_registration_path, :name => "user-register"  %></li>
+                          <li><%= link_to "Login", new_user_session_path, :name => "user-register" %></li>
                         <% end %>
+
                       </ul>
                     </div>
                   </div>
@@ -82,6 +85,9 @@
     </div>
     <div class="panel-region-separator"></div>
     <div class="panel-pane pane-page-content">
+      <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, id: "flash_#{name}" %>
+      <% end %>
     <%= yield %>
     </div>
     <div class="panel-pane pane-panels-mini pane-bz2-footer">

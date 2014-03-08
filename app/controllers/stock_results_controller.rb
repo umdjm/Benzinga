@@ -1,6 +1,5 @@
 class StockResultsController < ApplicationController
-
-  before_filter :authorize
+  before_filter :authenticate_user!
 
   # GET /stock_results
   # GET /stock_results.json
@@ -30,8 +29,12 @@ class StockResultsController < ApplicationController
     @market_open = (@last_call > Time.now)
 
     @current_leaders = User.order("current_streak desc, max_streak desc").limit(20)
+    @current_leaders.push(current_user) unless @current_leaders.include?(current_user)
+
     @all_time_leaders = User.order("max_streak desc, current_streak desc").limit(20)
-    @results = StockResult.includes(:stock_picks).where(:result_date => @curr_day)
+    @all_time_leaders.push(current_user) unless @current_leaders.include?(current_user)
+
+    @results = StockResult.includes(:stock_picks).where("result_date = '#{@curr_day}' AND (stock_picks.user_id IS NULL OR stock_picks.user_id = #{current_user.id})" )
 
     @allow_prediction = @market_open
     @results.each do |result|
