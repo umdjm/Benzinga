@@ -9,6 +9,7 @@ gem 'devise'
 
 gem 'pg'
 gem 'newrelic_rpm'
+gem 'fancybox-rails'
 
 
 group :development do
