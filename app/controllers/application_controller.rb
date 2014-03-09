@@ -9,11 +9,7 @@ class ApplicationController < ActionController::Base
   end
 
   def prev_weekday(original_date)
-    one_day = 1.day
-    weekdays = 1..5        # Monday is wday 1
-    result = original_date
-    result -= one_day until result < original_date && weekdays.member?(result.wday)
-    result
+    StockResult.prev_weekday(original_date)
   end
 
 end
