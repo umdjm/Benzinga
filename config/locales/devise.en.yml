@@ -53,8 +53,8 @@ en:
       failure: 'Could not authenticate you from %{kind} because "%{reason}".'
     mailer:
       confirmation_instructions:
-        subject: 'Confirmation instructions'
+        subject: 'Benzinga Stock Picker - Email Confirmation'
       reset_password_instructions:
-        subject: 'Reset password instructions'
+        subject: 'Benzinga Stock Picker - Password Reset Instructions'
       unlock_instructions:
-        subject: 'Unlock Instructions'
+        subject: 'Benzinga Stock Picker - Unlock Instructions'
