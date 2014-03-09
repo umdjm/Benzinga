@@ -20,7 +20,7 @@ StockPicker::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.action_mailer.default_url_options = { :host => 'smtp.sendgrid.net'}
+  config.action_mailer.default_url_options = { :host => 'benzinga.heroku.com' }
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
