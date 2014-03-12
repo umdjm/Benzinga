@@ -70,7 +70,7 @@ class StockResultsController < ApplicationController
 
     respond_to do |format|
       if @stock_result.save
-        format.html { redirect_to stock_results_url, notice: 'Stock result was successfully created.' }
+        format.html { redirect_to stock_results_url, notice: "Thanks for submitting your pick.  Check out what's going on in the world of finance at http://benzinga.com" }
         format.json { render json: @stock_result, status: :created, location: @stock_result }
       else
         format.html { render action: "new" }
