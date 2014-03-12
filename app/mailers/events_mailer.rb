@@ -29,10 +29,14 @@ class EventsMailer < ActionMailer::Base
             {
                 :name => 'DAYS_INACTIVE',
                 :content => (Date.current - last_activity.to_date).to_i
-            },
+            } ,
             {
                 :name => 'CURRENT_STREAK',
                 :content => user.current_streak
+            },
+            {
+                :name => 'STATUS_DATE',
+                :content => Time.now.strftime("%A, %B %d %Y")
             }
         ]
     }

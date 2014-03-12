@@ -5,7 +5,7 @@ class Notification < ActiveRecord::Base
   def self.SendBatchEmails
     return unless CONFIG[:weekdays].member?(Date.current.wday) && !CONFIG[:market_closed].member?(Date.current.yday)
     User.all.each do |user|
-        EventsMailer.send_mail(user, "dailyemail")
+        EventsMailer.send_mail(user, "testemail")
     end
   end
 end
