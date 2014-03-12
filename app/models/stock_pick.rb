@@ -11,6 +11,7 @@ class StockPick < ActiveRecord::Base
     return "#{self.prediction.humanize} from #{self.assigned_price}"
   end
 
+
   def result
     return "No Prediction" if self.prediction.nil? || self.assigned_price.nil?
     return "Current Pick" if self.stock_result.closing_price.nil?

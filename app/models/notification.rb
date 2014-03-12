@@ -4,7 +4,7 @@ class Notification < ActiveRecord::Base
 
   def self.SendBatchEmails
     User.all.each do |user|
-        EventsMailer.send_mail(user, "TestEmail")
+        EventsMailer.send_mail(user, "testemail")
     end
   end
 end

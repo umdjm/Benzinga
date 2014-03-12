@@ -7,6 +7,9 @@ class EventsMailer < ActionMailer::Base
   end
 
   def send_mail user, template
+    sp = user.stock_picks.last
+    last_activity = sp.nil? ? user.created_at : sp.created_at
+
     message = {
         :to=>[
             {
@@ -22,6 +25,14 @@ class EventsMailer < ActionMailer::Base
             {
                 :name => 'EMAIL_ADDRESS',
                 :content => user.email
+            },
+            {
+                :name => 'DAYS_INACTIVE',
+                :content => (Date.current - last_activity.to_date).to_i
+            },
+            {
+                :name => 'CURRENT_STREAK',
+                :content => user.current_streak
             }
         ]
     }
