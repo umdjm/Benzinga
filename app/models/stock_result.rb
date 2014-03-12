@@ -38,17 +38,15 @@ class StockResult < ActiveRecord::Base
 
   def self.next_weekday(original_date)
     one_day = 1.day
-    weekdays = 1..5        # Monday is wday 1
     result = original_date.at_midnight
-    result += one_day until result > original_date.at_midnight && weekdays.member?(result.wday) && !CONFIG[:market_closed].member?(result.yday)
+    result += one_day until result > original_date.at_midnight && CONFIG[:weekdays].member?(result.wday) && !CONFIG[:market_closed].member?(result.yday)
     return result
   end
 
   def self.prev_weekday(original_date)
     one_day = 1.day
-    weekdays = 1..5        # Monday is wday 1
     result = original_date.at_midnight
-    result -= one_day until result < original_date.at_midnight && weekdays.member?(result.wday) && !CONFIG[:market_closed].member?(result.yday)
+    result -= one_day until result < original_date.at_midnight && CONFIG[:weekdays].member?(result.wday) && !CONFIG[:market_closed].member?(result.yday)
     return result
   end
 

@@ -1,3 +1,4 @@
 stock_list: ['AAPL','GOOG','TSLA','GM','MSFT','JPM','FB','XOM','F','BUD']
 quote_url: 'http://data.benzinga.com/rest/combined?symbols='
 market_closed: [1, 20, 48, 108, 146, 184, 185, 244, 331, 332, 358, 359]
+weekdays: [1,2,3,4,5]
