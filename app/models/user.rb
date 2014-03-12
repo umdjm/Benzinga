@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   has_many :stock_picks
 
+
   def record
     return self.correct_count.to_s + "-" + self.incorrect_count.to_s
   end

@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140307012737) do
+ActiveRecord::Schema.define(:version => 20140312002456) do
+
+  create_table "notifications", :force => true do |t|
+    t.string   "template"
+    t.datetime "notification_date"
+    t.integer  "user_id"
+    t.string   "status"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "stock_picks", :force => true do |t|
     t.boolean  "success"

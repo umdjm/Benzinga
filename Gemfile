@@ -10,6 +10,7 @@ gem 'devise'
 gem 'pg'
 gem 'newrelic_rpm'
 gem 'fancybox-rails'
+gem 'mandrill-api'
 
 
 group :development do
