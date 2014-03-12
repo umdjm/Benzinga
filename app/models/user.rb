@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :current_streak, :max_streak, :name, :incorrect_count, :correct_count
 
   validates_uniqueness_of :email
-  has_many :stock_picks, :notifications
+  has_many :stock_picks
+  has_many :notifications
 
 
   def record
