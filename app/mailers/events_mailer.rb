@@ -11,13 +11,13 @@ class EventsMailer < ActionMailer::Base
         :to=>[
             {
                 :email=> user.email,
-                :name=> user.full_name
+                :name=> user.name
             }
         ],
         :global_merge_vars=> [
             {
                 :name => 'FIRST_NAME',
-                :content => user.first_name.titleize
+                :content => user.name.titleize
             },
             {
                 :name => 'EMAIL_ADDRESS',
