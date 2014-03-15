@@ -22,7 +22,11 @@
       </thead>
       <tbody>
       <% @current_leaders.each do |user| %>
-        <tr>
+        <% if(user == current_user) %>
+          <tr class="info">
+        <% else %>
+          <tr>
+        <% end %>
           <td><%= user.current_rank %></td>
           <td><%= user.name %></td>
           <td><%= user.record %></td>
@@ -47,7 +51,11 @@
       </thead>
       <tbody>
       <% @all_time_leaders.each do |user| %>
-        <tr>
+        <% if(user == current_user) %>
+          <tr class="info">
+        <% else %>
+          <tr>
+        <% end %>
           <td><%= user.max_rank %></td>
           <td><%= user.name %></td>
           <td><%= user.record %></td>
