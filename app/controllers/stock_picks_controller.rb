@@ -51,7 +51,7 @@ class StockPicksController < ApplicationController
 
     respond_to do |format|
       if @stock_pick.save
-        format.html { redirect_to "/results/" + @stock_result.result_date.to_s, notice: 'Stock pick was successfully created.' }
+        format.html { redirect_to "/results/" + @stock_result.result_date.to_s, notice: "Pick Created"}
       else
         format.html { redirect_to "/results/" + @stock_result.result_date.to_s, notice: @stock_pick.errors.to_json}
       end

@@ -3,18 +3,28 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :current_streak, :max_streak, :name, :incorrect_count, :correct_count
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :current_streak, :max_streak, :name, :incorrect_count, :correct_count, :current_rank, :max_rank
 
-  validates_uniqueness_of :email
   has_many :stock_picks
   has_many :notifications
 
+  before_save :default_values
+  def default_values
+    total_user_count = User.count
+    self.max_streak = 0
+    self.current_streak = 0
+    self.incorrect_count = 0
+    self.correct_count = 0
+    self.current_rank = total_user_count
+    self.max_rank = total_user_count
+  end
 
   def record
     return self.correct_count.to_s + "-" + self.incorrect_count.to_s
   end
 
   def update_streaks
+    return unless StockResult.where(:closing_price => nil).last.nil?
     self.current_streak = 0
     self.max_streak = 0
     self.correct_count = 0
@@ -30,6 +40,26 @@ class User < ActiveRecord::Base
       end
     end
     self.save
+  end
+
+  def self.update_all_rankings
+    return unless StockResult.where(:closing_price => nil).last.nil?
+    rank = 1
+    ActiveRecord::Base.transaction do
+      User.order("max_streak desc").each do |user|
+        user.max_rank = rank
+        rank = rank + 1
+        user.save
+      end
+    end
+    rank = 1
+    ActiveRecord::Base.transaction do
+      User.order("current_streak desc").each do |user|
+        user.current_rank = rank
+        rank = rank + 1
+        user.save
+      end
+    end
   end
 
   def self.update_all_streaks

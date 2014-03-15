@@ -25,19 +25,20 @@ class StockResultsController < ApplicationController
       end
     end
 
-    @last_call = @curr_day.change(:hour => 15)
+    @last_call = @curr_day.in_time_zone("America/New_York").change(:hour => 15)
     @market_open = (@last_call > Time.now)
 
     @current_leaders = User.order("current_streak desc, max_streak desc").limit(20)
-    @current_leaders.push(current_user) unless @current_leaders.include?(current_user)
+    @current_leaders << current_user unless @current_leaders.include?(current_user)
 
     @all_time_leaders = User.order("max_streak desc, current_streak desc").limit(20)
-    @all_time_leaders.push(current_user) unless @current_leaders.include?(current_user)
+    @all_time_leaders  << current_user unless @all_time_leaders.include?(current_user)
 
     @results = StockResult.includes(:stock_picks).where("result_date = '#{@curr_day}' AND (stock_picks.user_id IS NULL OR stock_picks.user_id = #{current_user.id})" )
 
     @allow_prediction = @market_open
     @results.each do |result|
+      @pick = result.stock_picks.first unless result.stock_picks.first.nil?
       @allow_prediction = false unless result.closing_price.nil?
       @allow_prediction = false unless result.stock_picks.first.nil?
     end
@@ -70,7 +71,7 @@ class StockResultsController < ApplicationController
 
     respond_to do |format|
       if @stock_result.save
-        format.html { redirect_to stock_results_url, notice: "Thanks for submitting your pick.  Check out what's going on in the world of finance at http://benzinga.com" }
+        format.html { redirect_to stock_results_url }
         format.json { render json: @stock_result, status: :created, location: @stock_result }
       else
         format.html { render action: "new" }

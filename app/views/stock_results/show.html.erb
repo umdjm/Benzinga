@@ -1,9 +1,28 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-12 col-md-8">
-      Your account still needs to be <%= link_to "confirmed.", new_confirmation_path("user") %><br />
-      <h2> Picks for <%= @curr_day.strftime("%A %b %-d") %> </h2>
+    <div class="col-md-12">
+      <% if !current_user.confirmed? %>
+           <h4 style="color:red;">Your account still needs to be <%= link_to "confirmed.", new_confirmation_path("user") %><br /></h4>
+      <% end %>
 
+      <% if !@pick.nil? %>
+        <h4 style="font-weight:bold;">
+          <p><%= "Thanks for making your pick. You are locked in with  #{@pick.stock_result.stock} - #{@pick.prediction}." %></p>
+          <p><%= "Please return after closing bell on #{next_weekday(@curr_day).strftime("%A")} to make your next pick." %><p>
+        </h4>
+      <% elsif @allow_prediction %>
+        <p>Now accepting picks for <%= @curr_day.strftime("%A, %B %-d") %>.  Make your prediction!</p>
+      <% else %>
+        <h4 style="color:#0a5e80; font-weight:bold;">
+          <p>Picks are currently closed for the day.</p>
+          <p>Please return after closing bell to make your next pick.</p>
+        </h4>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-8">
+      <h2> Prediction Options for <%= @curr_day.strftime("%A, %B %-d") %> </h2>
       <div class="btn-toolbar">
           &nbsp;
           <% if @curr_day.at_midnight <= current_user.created_at.at_midnight %>
@@ -15,14 +34,11 @@
 
 
           <% if @curr_day >= @max_date %>
-            | Next | Last
+            | Next | Current
           <% else %>
             | <a href="<%= url_for :controller => 'stock_results', :action => 'show', :day => next_weekday(@curr_day).strftime("%Y%m%d") %>">Next </a>
-            | <a href="<%= root_url %>"> Last </a>
+            | <a href="<%= root_url %>"> Current </a>
           <% end %>
-
-
-
       </div>
       <div class="table-responsive">
         <table class="table table-striped">
@@ -106,6 +122,7 @@
         <table class="current-streak streak table table-striped">
           <thead>
           <tr>
+            <th>Rank</th>
             <th>User</th>
             <th>Record</th>
             <th>Longest</th>
@@ -115,6 +132,7 @@
           <tbody>
           <% @current_leaders.each do |user| %>
             <tr>
+              <td><%= user.current_rank %></td>
               <td><%= user.name %></td>
               <td><%= user.record %></td>
               <td><%= user.max_streak %></td>
@@ -129,6 +147,7 @@
         <table style="display:none" class="longest-streak streak table table-striped">
           <thead>
           <tr>
+            <th>Rank</th>
             <th>User</th>
             <th>Record</th>
             <th>Longest</th>
@@ -138,6 +157,7 @@
           <tbody>
           <% @all_time_leaders.each do |user| %>
             <tr>
+              <td><%= user.max_rank %></td>
               <td><%= user.name %></td>
               <td><%= user.record %></td>
               <td><%= user.max_streak %></td>
@@ -149,7 +169,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 
