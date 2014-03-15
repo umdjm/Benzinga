@@ -110,6 +110,21 @@
             });
           });
         </script>
+      <% elsif flash[:notice] == "Signed Up" %>
+
+        <script>
+           $(document).ready(function() {
+             $.fancybox({
+               'width': '40%',
+               'height': '40%',
+               'autoScale': true,
+                'transitionIn': 'fade',
+               'transitionOut': 'fade',
+               'type': 'inline',
+               'href': '#rules'
+             });
+           });
+         </script>
       <% end %>
 
     <%= yield %>
@@ -141,18 +156,16 @@
 
     </div>
   </div>
-  <div style="display:none;">
-    <div id="rules">
-      <h1>Rules</h1>
-      <p>Lorem ipsum dolor sit amet, ad eos agam duis scripserit, no vel nonumy populo facilisis. Eum probo omnes nostro ei, tota graecis eu mei, tantas civibus complectitur nec no. Sea te sale errem molestiae, ius et vide quaerendum, alii copiosae deterruisset in sit. No sit vocibus propriae consetetur. Vel id quod sumo consetetur. Dicam oblique ea has.</p>
+  <div style="display:none; ">
+    <div id="rules" style="width:600px;">
+      <h1>Welcome To Up or Dow!</h1>
+      <h2>How to Play</h2>
+        <p>1) Correctly predict the daily outcome for one of the listed stocks.</p>
 
-      <p>Eam ex omnesque lucilius, ne tation consul sed. Amet utamur vocibus cum eu, nec causae mediocrem democritum id, vis ad suas mediocritatem. Eius labitur commune nam ut, dicam ceteros facilisi per eu. Mea putent utamur te, an vix vero wisi vituperatoribus, ei timeam copiosae phaedrum eam.   </p>
+        <p>2) Return after market closing to make your next prediction.</p>
 
-      <p>Magna semper appetere has an. Ei affert iuvaret singulis nam, instructior vituperatoribus mei cu. Duo purto civibus in, eu vim mollis dolores. Sale iusto duo te, putant alienum perpetua per eu, ipsum tamquam platonem ad pro. An magna rationibus vim, reque option conclusionemque sit ut.</p>
+        <p>3) Build the longest winning streak and win.</p>
 
-      <p>Ea duis euripidis forensibus pro. His nusquam nostrum efficiantur te, habeo graeci id sea. Eum elitr salutandi et, cu fabellas iudicabit sed. An amet corpora ponderum mei. Luptatum tincidunt appellantur sed ad, usu alia utroque dissentiet in. </p>
-
-      <p>Phaedrum eleifend deterruisset cum at, nam epicuri deleniti ne, eu pri ceteros salutandi dissentiet. Mel stet labitur accusata no, autem clita per te. Aperiam inermis dolorem vim eu, ad alii idque putent mei. Eam aeterno accommodare ei. Euismod qualisque mea ea.</p>
     </div>
   </div>
 </body>
