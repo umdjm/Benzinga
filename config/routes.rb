@@ -6,4 +6,6 @@ StockPicker::Application.routes.draw do
 
   get '/results/:day', to: 'stock_results#show'
   get '/results', to: 'stock_results#show'
+
+  get '/history', to: 'stock_picks#index'
 end

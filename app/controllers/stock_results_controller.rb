@@ -28,10 +28,10 @@ class StockResultsController < ApplicationController
     @last_call = @curr_day.in_time_zone("America/New_York").change(:hour => 15)
     @market_open = (@last_call > Time.now)
 
-    @current_leaders = User.order("current_rank desc").limit(20)
+    @current_leaders = User.order("current_rank asc").limit(20)
     @current_leaders << current_user unless @current_leaders.include?(current_user)
 
-    @all_time_leaders = User.order("max_rank desc").limit(20)
+    @all_time_leaders = User.order("max_rank asc").limit(20)
     @all_time_leaders  << current_user unless @all_time_leaders.include?(current_user)
 
     @results = StockResult.includes(:stock_picks).where("result_date = '#{@curr_day}' AND (stock_picks.user_id IS NULL OR stock_picks.user_id = #{current_user.id})" )

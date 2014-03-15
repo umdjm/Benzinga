@@ -6,6 +6,13 @@ class StockPicksController < ApplicationController
   def index
     @stock_picks = current_user.stock_picks.all
 
+
+    @current_leaders = User.order("current_rank asc").limit(20)
+    @current_leaders << current_user unless @current_leaders.include?(current_user)
+
+    @all_time_leaders = User.order("max_rank asc").limit(20)
+    @all_time_leaders  << current_user unless @all_time_leaders.include?(current_user)
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @stock_picks }
