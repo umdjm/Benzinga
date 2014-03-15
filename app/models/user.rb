@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :stock_picks
   has_many :notifications
 
-  before_save :default_values
+  after_initialize :default_values, if: 'new_record?'
   def default_values
     total_user_count = User.count
     self.max_streak = 0
