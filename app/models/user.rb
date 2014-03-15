@@ -42,29 +42,11 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  def temp_update_streaks
-    self.current_streak = 0
-    self.max_streak = 0
-    self.correct_count = 0
-    self.incorrect_count = 0
-    self.stock_picks.order(:id).each do |pick|
-      if pick.success
-        self.correct_count = self.correct_count + 1
-        self.current_streak = self.current_streak + 1
-        self.max_streak = self.current_streak if self.current_streak > self.max_streak
-      elsif !pick.success.nil?
-        self.incorrect_count = self.incorrect_count + 1
-        self.current_streak = 0
-      end
-    end
-    self.save
-  end
-
   def self.update_all_rankings
     return unless StockResult.where(:closing_price => nil).last.nil?
     rank = 1
     ActiveRecord::Base.transaction do
-      User.order("max_streak desc").each do |user|
+      User.order("max_streak desc, current_streak desc").each do |user|
         user.max_rank = rank
         rank = rank + 1
         user.save
@@ -72,7 +54,7 @@ class User < ActiveRecord::Base
     end
     rank = 1
     ActiveRecord::Base.transaction do
-      User.order("current_streak desc").each do |user|
+      User.order("current_streak desc, max_streak desc").each do |user|
         user.current_rank = rank
         rank = rank + 1
         user.save
