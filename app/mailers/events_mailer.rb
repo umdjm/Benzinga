@@ -35,6 +35,10 @@ class EventsMailer < ActionMailer::Base
                 :content => user.current_streak
             },
             {
+                :name => 'PREDICTIONS',
+                :content => (user.incorrect_count + user.correct_count)
+            },
+            {
                 :name => 'STATUS_DATE',
                 :content => Time.now.strftime("%A, %B %d %Y")
             }

@@ -34,8 +34,16 @@ task :create_next_day => :environment do
 end
 
 desc "This task is called by the Heroku scheduler add-on"
-task :send_daily_email => :environment do
+task :send_morning_email => :environment do
   puts "Sending email..."
-  Notification.SendBatchEmails
+  Notification.SendMorningEmails
+  puts "done."
+end
+
+
+desc "This task is called by the Heroku scheduler add-on"
+task :send_nightly_email => :environment do
+  puts "Sending email..."
+  Notification.SendNightlyEmails
   puts "done."
 end
