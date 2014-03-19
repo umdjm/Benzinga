@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   after_initialize :default_values, if: 'new_record?'
   def default_values
-    total_user_count = User.count
+    total_user_count = User.count + 1
     self.max_streak = 0
     self.current_streak = 0
     self.incorrect_count = 0

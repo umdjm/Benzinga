@@ -6,3 +6,11 @@ development:
   pool: 5
   username: rails
   password: jordan
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: stockpicker_test
+  pool: 5
+  username: rails
+  password: jordan

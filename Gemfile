@@ -17,6 +17,12 @@ group :development do
   gem 'webrick', '~> 1.3.1'
 end
 
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'launchy'
+end
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
