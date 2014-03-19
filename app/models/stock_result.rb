@@ -3,7 +3,7 @@ class StockResult < ActiveRecord::Base
   has_many :stock_picks
 
   def closing_time
-    Time.parse(sr.result_date.to_s + " 16:00:00 -0400")
+    Time.parse(self.result_date.to_s + " 16:00:00 -0400")
   end
 
   def market_open

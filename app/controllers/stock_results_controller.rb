@@ -13,7 +13,7 @@ class StockResultsController < ApplicationController
   end
 
   def show
-    @max_date = Time.parse(StockResult.maximum(:result_date).to_s)
+    @max_date = Time.parse(StockResult.maximum(:result_date).to_s + " 15:00:00 -0400")
 
     if params[:day].nil?
       @curr_day = @max_date
