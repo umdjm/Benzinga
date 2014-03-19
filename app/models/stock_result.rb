@@ -53,7 +53,7 @@ class StockResult < ActiveRecord::Base
   def self.create_next_day
     return unless StockResult.where(:closing_price => nil).last.nil?
     stock_date = StockResult.next_weekday(Time.now).in_time_zone("America/New_York").to_date
-    return unless StockResult.where(:result_date => stock_date).last.nil?
+    return unless StockResult.where("result_date > ?", stock_date).last.nil?
 
     stock_list = CONFIG[:stock_list].join(',')
     quotes = StockResult.retrieve_quotes(stock_list)
