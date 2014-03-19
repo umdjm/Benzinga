@@ -36,7 +36,7 @@
             <table cellpadding="10" width="100%" bgcolor="#255b78" id="datetable" style="border-radius: 10px 10px 0 0;">
               <tr>
                 <td width="300" style="color:#ffffff; font-size:18px;">
-                 <%= Time.now.to_time_zone("America/New_York").strftime("%A, %B %d %Y") %>
+                 <%= Time.now.in_time_zone("America/New_York").strftime("%A, %B %d %Y") %>
                 </td>
                 <td align="right">
                   <a href="https://www.facebook.com/Benzinga?v=app_7146470109" style="margin:2px;"><img src="http://cdn5.benzinga.com/sites/all/modules/custom/bz_custom/images/newsletter/social-icons/png/facebook.png" width="34" height="34" alt="Facebook" border="0" /></a>
