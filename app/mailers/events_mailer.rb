@@ -40,7 +40,7 @@ class EventsMailer < ActionMailer::Base
             },
             {
                 :name => 'STATUS_DATE',
-                :content => Time.now.strftime("%A, %B %d %Y")
+                :content => Time.now.in_time_zone("America/New_York").strftime("%A, %B %d %Y")
             }
         ]
     }

@@ -3,7 +3,7 @@ class StockResult < ActiveRecord::Base
   has_many :stock_picks
 
   def closing_time
-    Time.parse(self.result_date.to_s).in_time_zone("America/New_York").change(:hour => 16)
+    Time.parse(sr.result_date.to_s + " 16:00:00 -0400")
   end
 
   def market_open
@@ -52,11 +52,13 @@ class StockResult < ActiveRecord::Base
 
   def self.create_next_day
     return unless StockResult.where(:closing_price => nil).last.nil?
+    stock_date = next_weekday(Time.now).in_time_zone("America/New_York")
+    return unless StockResult.where(:result_date => stock_date).last.nil?
+
     stock_list = CONFIG[:stock_list].join(',')
     quotes = StockResult.retrieve_quotes(stock_list)
     return if quotes.nil?
 
-    stock_date = next_weekday(Time.now)
     quotes.each do |record|
       quote = record[1]
       newRecord = StockResult.new(:result_date => stock_date, :stock => quote["ipfSymbol"], :current_price => quote["ask"])
