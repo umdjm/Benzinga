@@ -68,8 +68,6 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    fancybox-rails (0.2.1)
-      railties (>= 3.1.0)
     ffi (1.9.3)
     hike (1.2.3)
     httparty (0.13.0)
@@ -191,7 +189,6 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
-  fancybox-rails
   httparty
   jquery-rails
   launchy
