@@ -8,7 +8,7 @@ class StockPick < ActiveRecord::Base
 
   def prediction_long
     return "" if self.prediction.nil? || self.assigned_price.nil?
-    return "#{self.prediction.humanize} from #{self.assigned_price}"
+    return "#{self.prediction.humanize} from #{ActionController::Base.helpers.number_to_currency(self.assigned_price)}"
   end
 
 
