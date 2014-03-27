@@ -11,15 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require fancybox
 //= require jquery_ujs
 //= require bootstrap.min
 //= require_tree .
-$(document).ready(function() {
-    $("a.fancybox").fancybox(
-        {
-            'margin' : 100,
-            'scrolling' : false
-        }
-    );
-});
