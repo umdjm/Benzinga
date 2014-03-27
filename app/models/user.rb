@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :stock_picks
   has_many :notifications
 
+  def age_in_seconds
+    Time.now - self.created_at
+  end
+
   after_initialize :default_values, if: 'new_record?'
   def default_values
     total_user_count = User.count + 1

@@ -1,14 +1,19 @@
 require 'spec_helper'
 
 describe "StockPicks" do
-  describe "GET /users/sign_up" do
-    it "creates a user" do
-      visit new_user_registration_path
-      fill_in "Email", :with => "test@test.com"
-      fill_in "Name", :with => "Sample Name"
-      fill_in "Password", :with => "password"
-      fill_in "Password confirmation", :with => "password"
-      click_button "Sign up"
+
+  describe "Visit Home Page" do
+    it "Display Leaderboard and Current Pick Options", :js => true do
+      sign_up
+      page.should have_content "Leaderboard"
+      page.should have_content Time.now.in_time_zone("America/New_York").strftime("%A, %B %-d")
+    end
+
+    it "display current options", :js => true do
+      StockResult.create_next_day
+      sign_up
+      page.should have_selector('.stock-options tr', :minimum => 3)
+      pause
     end
   end
 end

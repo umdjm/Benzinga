@@ -63,7 +63,7 @@
                           <li><%= link_to "Sign up", new_user_registration_path, :name => "user-register"  %></li>
                           <li><%= link_to "Login", new_user_session_path, :name => "user-register" %></li>
                         <% end %>
-                        <li><%= link_to "Rules", "#rules", class: "fancybox" %></li>
+                        <li><a href="" data-toggle="modal" data-target="#RulesModal">Rules</a></li>
 
                       </ul>
                     </div>
@@ -87,44 +87,40 @@
     <div class="panel-region-separator"></div>
     <div class="panel-pane pane-page-content">
       <% if flash[:notice] == "Pick Created" %>
-        <div id="flash_content">
-          <h1>Thanks for making your pick!</h1>
-          <h4>
-            <% if is_market_prep_time %>
-              Join Joel and Dennis for the #PreMarket Prep Show at <a href='http://optionshouse.benzinga.com'>www.optionshouse.benzinga.com</a>
-            <% elsif %>
-               Check out what's going on in the world of finance at <a href='http://www.benzinga.com'>www.benzinga.com</a>
-            <% end %>
-          </h4>
+        <!-- Modal -->
+        <div class="modal fade" id="PickModal" tabindex="-1" role="dialog" aria-labelledby="PickModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="PickModalLabel">Thanks for making your pick!</h4>
+              </div>
+              <div class="modal-body">
+                <h4>
+                  <% if is_market_prep_time %>
+                    Join Joel and Dennis for the #PreMarket Prep Show at <a href='http://optionshouse.benzinga.com'>www.optionshouse.benzinga.com</a>
+                  <% elsif %>
+                    Check out what's going on in the world of finance at <a href='http://www.benzinga.com'>www.benzinga.com</a>
+                  <% end %>
+                </h4>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
         </div>
         <script>
           $(document).ready(function() {
-            $.fancybox({
-              'width': '40%',
-              'height': '40%',
-              'autoScale': true,
-              'transitionIn': 'fade',
-              'transitionOut': 'fade',
-              'type': 'inline',
-              'href': '#flash_content'
-            });
+            $('#PickModal').modal();
           });
         </script>
-      <% elsif flash[:notice] == "Signed Up" %>
-
+      <% elsif !current_user.nil? && current_user.age_in_seconds < 30 %>
         <script>
-           $(document).ready(function() {
-             $.fancybox({
-               'width': '40%',
-               'height': '40%',
-               'autoScale': true,
-                'transitionIn': 'fade',
-               'transitionOut': 'fade',
-               'type': 'inline',
-               'href': '#rules'
-             });
-           });
-         </script>
+          $(document).ready(function() {
+            $('#RulesModal').modal();
+          });
+        </script>
       <% end %>
 
     <%= yield %>
@@ -156,17 +152,29 @@
 
     </div>
   </div>
-  <div style="display:none; ">
-    <div id="rules" style="width:600px;">
-      <h1>Welcome To Up or Dow!</h1>
-      <h2>How to Play</h2>
-        <p>1) Correctly predict the daily outcome for one of the listed stocks.</p>
 
-        <p>2) Return after market closing to make your next prediction.</p>
+  <!-- Modal -->
+  <div class="modal fade" id="RulesModal" tabindex="-1" role="dialog" aria-labelledby="RulesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="RulesModalLabel">Welcome To Up or Dow!</h4>
+        </div>
+        <div class="modal-body">
+          <h2>How to Play</h2>
+          <p>1) Correctly predict the daily outcome for one of the listed stocks.</p>
 
-        <p>3) Build the longest winning streak and win.</p>
+          <p>2) Return after market closing to make your next prediction.</p>
 
+          <p>3) Build the longest winning streak and win.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
   </div>
+
 </body>
 </html>
