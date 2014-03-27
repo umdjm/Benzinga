@@ -4,6 +4,8 @@ task :update_all => :environment do
   StockResult.update_prices
   puts "Updating all streaks..."
   User.update_all_streaks
+  puts "Updating all rankings..."
+  User.update_all_rankings
   puts "Creating Next Day..."
   StockResult.create_next_day
   puts "done."
