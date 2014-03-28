@@ -65,31 +65,4 @@ class StockPicksController < ApplicationController
     end
   end
 
-  # PUT /stock_picks/1
-  # PUT /stock_picks/1.json
-  def update
-    @stock_pick = StockPick.find(params[:id])
-
-    respond_to do |format|
-      if @stock_pick.update_attributes(params[:stock_pick])
-        format.html { redirect_to stock_picks_url, notice: 'Stock pick was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @stock_pick.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /stock_picks/1
-  # DELETE /stock_picks/1.json
-  def destroy
-    @stock_pick = StockPick.find(params[:id])
-    @stock_pick.destroy
-
-    respond_to do |format|
-      format.html { redirect_to stock_picks_url }
-      format.json { head :no_content }
-    end
-  end
 end
