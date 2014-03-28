@@ -1,12 +1,27 @@
-<h2>Resend confirmation instructions</h2>
 
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+<div id="benzinga-main" class="sign-form signin-form">
+  <div id="benzinga-sign-form">
+    <div class="block-sign-content block-signin-content">
+      <div class="block-bg">
+        <div class="block-bg">
+          <div class="block-signup">
+            <h2>Resend confirmation instructions</h2>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+            <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+              <%= devise_error_messages! %>
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
+              <div><%= f.label :email %><br />
+                <%= f.email_field :email, :autofocus => true %></div>
 
-<%= render "devise/shared/links" %>
+              <div><%= f.submit "Resend confirmation instructions" %></div>
+            <% end %>
+
+            <%= render "devise/shared/links" %>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

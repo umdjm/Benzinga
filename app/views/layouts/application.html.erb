@@ -74,19 +74,21 @@
           </div>
         </div>
 
-        <div id="bz3-header-logos-wrapper">
-          <div id="bz3-header-logos">
-            <div id="bz-logo">
-              <a href="/">Benzinga - Feed Your Mind.</a>
+        <% if user_signed_in? %>
+          <div id="bz3-header-logos-wrapper">
+            <div id="bz3-header-logos">
+              <div id="bz-logo">
+                <a href="/">Benzinga - Feed Your Mind.</a>
+              </div>
             </div>
-
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
     <div class="panel-region-separator"></div>
-    <div class="panel-pane pane-page-content">
-      <% if flash[:notice] == "Pick Created" %>
+    <% if user_signed_in? %>
+      <div class="panel-pane pane-page-content">
+        <% if flash[:notice] == "Pick Created" %>
         <!-- Modal -->
         <div class="modal fade" id="PickModal" tabindex="-1" role="dialog" aria-labelledby="PickModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -122,9 +124,31 @@
           });
         </script>
       <% end %>
+        <%= yield %>
+      </div>
+    <% else %>
+      <div>
+        <div style="width:100%">
+          <%= image_tag "upordown_bg.PNG", :style => "min-width: 100%;height: auto;" %>
+        </div>
 
-    <%= yield %>
-    </div>
+        <div id="benzinga-main" class="sign-form signin-form">
+          <div id="benzinga-sign-form">
+            <div class="block-sign-content block-signin-content">
+              <div class="block-bg">
+                <div class="block-bg">
+                  <div class="block-signup">
+                    <%= yield %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+
     <div class="panel-pane pane-panels-mini pane-bz2-footer">
       <div class="pane-content">
         <div id="benzinga-footer">

@@ -1,38 +1,23 @@
 
-
-
-<div id="benzinga-main" class="sign-form signin-form">
-  <div id="benzinga-sign-form">
-    <div class="block-sign-content block-signin-content">
-      <div class="block-bg">
-        <div class="block-bg">
-          <div class="block-signup">
-              <h3>What are you waiting for? Sign up now!</h3>
-              <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-                <%= devise_error_messages! %>
-                <div class="form-item" id="edit-name-wrapper">
-                  <%= f.label :email %>
-                  <%= f.email_field :email, :autofocus => true, :class=>"form-text required"%>
-                </div>
-                <div class="form-item" id="edit-name-wrapper">
-                  <%= f.label :name %>
-                  <%= f.text_field :name %>
-                </div>
-                <div class="form-item" id="edit-pass-wrapper">
-                  <%= f.label :password %>
-                  <%= f.password_field :password, :class=>"form-text required" %>
-                </div>
-                <div class="form-item" id="edit-pass-wrapper">
-                  <%= f.label :password_confirmation %>
-                  <%= f.password_field :password_confirmation, :class=>"form-text required" %>
-                </div>
-
-                <div><%= f.submit "Sign Up", :class=>"button green sign-up-btn" %></div>
-              <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
+<h3>What are you waiting for? Sign up now!</h3>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="form-item" id="edit-name-wrapper">
+    <%= f.label :email %>
+    <%= f.email_field :email, :autofocus => true, :class=>"form-text required"%>
   </div>
-</div>
+  <div class="form-item" id="edit-name-wrapper">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-item" id="edit-pass-wrapper">
+    <%= f.label :password %>
+    <%= f.password_field :password, :class=>"form-text required" %>
+  </div>
+  <div class="form-item" id="edit-pass-wrapper">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, :class=>"form-text required" %>
+  </div>
 
+  <div><%= f.submit "Sign Up", :class=>"button green sign-up-btn" %></div>
+<% end %>
