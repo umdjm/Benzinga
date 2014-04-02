@@ -20,18 +20,18 @@
         <th>Current</th>
       </tr>
       </thead>
-      <tbody>
+      <tbody class="leaders">
       <% @current_leaders.each do |user| %>
         <% if(user == current_user) %>
           <tr class="info">
         <% else %>
           <tr>
         <% end %>
-          <td><%= user.current_rank %></td>
-          <td><%= user.name %></td>
-          <td><%= user.record %></td>
-          <td><%= user.max_streak %></td>
-          <td><%= user.current_streak %></td>
+          <td class="user-rank"><%= user.current_rank %></td>
+          <td class="user-name"><%= user.name %></td>
+          <td class="user-record"><%= user.record %></td>
+          <td class="max-streak"><%= user.max_streak %></td>
+          <td class="current-streak"><%= user.current_streak %></td>
         </tr>
       <% end %>
       </tbody>
@@ -56,11 +56,11 @@
         <% else %>
           <tr>
         <% end %>
-          <td><%= user.max_rank %></td>
-          <td><%= user.name %></td>
-          <td><%= user.record %></td>
-          <td><%= user.max_streak %></td>
-          <td><%= user.current_streak %></td>
+        <td class="user-rank"><%= user.current_rank %></td>
+        <td class="user-name"><%= user.name %></td>
+        <td class="user-record"><%= user.record %></td>
+        <td class="max-streak"><%= user.max_streak %></td>
+        <td class="current-streak"><%= user.current_streak %></td>
         </tr>
       <% end %>
       </tbody>

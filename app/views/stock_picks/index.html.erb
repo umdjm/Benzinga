@@ -30,7 +30,7 @@
         </thead>
         <tbody>
           <% @stock_picks.each do |stock_pick| %>
-            <tr>
+            <tr class="historical-stock-pick">
               <td><%= stock_pick.stock_result.stock  %></td>
               <td><%= stock_pick.stock_result.result_date %></td>
               <td><%= stock_pick.prediction_long %></td>

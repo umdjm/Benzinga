@@ -23,6 +23,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'capybara', :git => 'git://github.com/jnicklas/capybara.git'
   gem 'launchy'
+  gem 'timecop'
 end
 
 # Gems used only for assets and not required

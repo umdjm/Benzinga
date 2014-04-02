@@ -5,4 +5,5 @@ FactoryGirl.define do
     password_confirmation "password"
     email { "#{name}@example.com" }
   end
+
 end
