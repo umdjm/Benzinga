@@ -8,7 +8,7 @@
       <% if !@pick.nil? %>
         <h4 style="font-weight:bold;">
           <p><%= "Thanks for making your pick. You are locked in with  #{@pick.stock_result.stock} - #{@pick.prediction}." %></p>
-          <p><%= "Please return after closing bell on #{next_weekday(@curr_day).strftime("%A")} to make your next pick." %><p>
+          <p><%= "Please return after closing bell on #{@curr_day.strftime("%A")} to make your next pick." %><p>
         </h4>
       <% elsif @allow_prediction %>
         <p>Now accepting picks for <%= @curr_day.strftime("%A, %B %-d") %>.  Make your prediction!</p>
